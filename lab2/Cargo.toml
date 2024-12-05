@@ -1,0 +1,12 @@
+[package]
+name = "lab2"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pest = "2.7.14"
+pest_derive = "2.7.14"
+regex = "1.11.1"
+lazy_static = "1.5.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

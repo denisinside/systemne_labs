@@ -1,0 +1,60 @@
+//
+// Created by intellij-pest on 2024-10-30
+// grammar
+// Author: denisinside
+//
+
+WHITESPACE = _{ " " | "\t" | NEWLINE }
+
+statement_list = _{ ((skip_statement | statement) ~ ";")* }
+
+skip_statement = _{ "//" ~ (!";" ~ ANY)* }
+
+statement = _{
+    define_rectangle
+    | calculate_area
+    | calculate_perimeter
+    | build_diagonal
+    | move_by_rectangle
+    | move_to_rectangle
+    | resize_rectangle
+    | rotate_rectangle
+    | reflect_rectangle
+    | build_rectangle_with_ratio
+    | mark_intersection
+    | rename_point
+}
+
+define_rectangle = { "позначити" ~ rect? ~ rectangle_name ~ (("з координатами" | "в" | "у")? ~ parameters)? }
+calculate_area = { "визначити площу" ~ rect? ~ rectangle_name? }
+calculate_perimeter = { "визначити периметр" ~ rect? ~ rectangle_name? }
+build_diagonal = { "побудувати діагональ" ~ rect? ~ rectangle_name? }
+move_by_rectangle = { "здвинути" ~ rect? ~ rectangle_name? ~ "на"? ~ vector }
+move_to_rectangle = { "перемістити" ~ rect? ~ rectangle_name? ~ ("на" | "до" | "у" | "в")? ~ vector }
+resize_rectangle = { "змінити розмір" ~ rect? ~ rectangle_name? ~ ("в" | "у")? ~ coefficient ~ ("раз" ~ ASCII_UKRAINE_ALPHA{,3})?}
+rotate_rectangle = { "повернути" ~ rect? ~ rectangle_name? ~ "на"? ~ angle ~ "з центром"? ~ center_point }
+reflect_rectangle = { "відзеркалити " ~ rect? ~ rectangle_name? ~ "за"? ~ axis }
+build_rectangle_with_ratio = { "побудувати" ~ rect? ~ rectangle_name ~ "на основі відношен" ~ ASCII_UKRAINE_ALPHA{,3}  ~ ratio ~ length ~ ("з координатами" | "в" | "у")? ~ ("точ" ~ ASCII_UKRAINE_ALPHA{,3})? ~ coordinate_pair}
+mark_intersection = { "позначити перетин" ~ rect? ~ rectangle_name ~ ("та" | "з")? ~ rect? ~ rectangle_name? }
+rename_point = { ("переіменувати" | "змінити назву") ~ ("точк" ~ ASCII_UKRAINE_ALPHA{,3})? ~ ("в" | "у")? ~ rect? ~ rectangle_name? ~ ("точк" ~ ASCII_UKRAINE_ALPHA{,3})? ~ point_name ~ "на"? ~ point_name}
+
+rect = _{ "прямокут" ~ ASCII_UKRAINE_ALPHA{,5} }
+coordinate_list = { coordinate_pair ~ ("," ~ coordinate_pair){3} }
+coordinate_pair = { "(" ~ signed_number ~ "," ~ signed_number ~ ")" }
+size_define = {("з висотою" | "висота" | "розміром")? ~ height ~ ("x" | "х" | "з шириною" | "ширина" | "на")? ~ width}
+parameters = _{ (size_define ~ (("у точці" | "у" | "в")? ~ coordinate_pair)?) | coordinate_list }
+vector = { "(" ~ signed_number ~ "," ~ signed_number ~ ")" }
+coefficient = { float }
+angle = { number ~ ("°" | "'" | ("градус" ~ ASCII_UKRAINE_ALPHA{,3}))? }
+center_point = { point_name | coordinate_pair }
+axis = { "X" | "Y" }
+ratio = { number ~ (":" | "до") ~ number }
+point_name = { ASCII_ALPHA ~ number? }
+rectangle_name = { point_name{4} }
+width = { number }
+height = { number }
+length = { ("з діагоналлю" | "з довжиною")? ~ number }
+number = @{ ASCII_DIGIT+ }
+signed_number = @{ ("+" | "-" )? ~ ASCII_DIGIT+ }
+float = @{ ASCII_DIGIT+ ~ ("."? ~ ASCII_DIGIT{,10})? }
+ASCII_UKRAINE_ALPHA = _{ "і" | "І" | 'а'..'я' | 'А'..'Я' }

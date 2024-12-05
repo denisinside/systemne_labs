@@ -1,0 +1,12 @@
+[package]
+name = "lab3"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+reqwest = { version = "0.12.9", features = ["json"] }
+serde_json = "1.0.133"
+regex = "1.11.1"
+calamine = "0.26.1"
+tokio = { version = "1.0.0", features = ["rt", "rt-multi-thread", "macros"] }
+libm = "0.2.11"

@@ -1,0 +1,61 @@
+[
+  [
+    "Init",
+    {
+      "height": 8.0,
+      "traits": {
+        "Perimeter": 28.0
+      },
+      "width": 6.0
+    }
+  ],
+  [
+    "Found diagonal using sides",
+    {
+      "height": 8.0,
+      "traits": {
+        "Diagonal": 10.0,
+        "Perimeter": 28.0
+      },
+      "width": 6.0
+    }
+  ],
+  [
+    "Found circumscribed circle radius using diagonal/diameter",
+    {
+      "height": 8.0,
+      "traits": {
+        "CircumscribedCircleRadius": 5.0,
+        "Diagonal": 10.0,
+        "Perimeter": 28.0
+      },
+      "width": 6.0
+    }
+  ],
+  [
+    "Found circumscribed circle perimeter using its radius",
+    {
+      "height": 8.0,
+      "traits": {
+        "CircumscribedCirclePerimeter": 31.41592653589793,
+        "CircumscribedCircleRadius": 5.0,
+        "Diagonal": 10.0,
+        "Perimeter": 28.0
+      },
+      "width": 6.0
+    }
+  ],
+  [
+    "Final result",
+    {
+      "height": 8.0,
+      "traits": {
+        "CircumscribedCirclePerimeter": 31.41592653589793,
+        "CircumscribedCircleRadius": 5.0,
+        "Diagonal": 10.0,
+        "Perimeter": 28.0
+      },
+      "width": 6.0
+    }
+  ]
+]
